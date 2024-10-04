@@ -7,10 +7,10 @@ def macd_feature_engineering(df):
     macd = macd_df["MACD_12_26_9"]
     macd_signal = macd_df["MACDh_12_26_9"]
     macd_hist = macd_df["MACDs_12_26_9"]
-    df["macd_pct"] = macd.pct_change()
+    df["macd_pct"] = macd.pct_change() * 100
     df["macd_pct_sma"] = ta.sma(df["macd_pct"])
     df["macd_pct_ema"] = ta.ema(df["macd_pct"])
-    df["macd_signal_pct"] = macd_signal.pct_change()
+    df["macd_signal_pct"] = macd_signal.pct_change() * 100
     df["macd_signal_pct_sma"] = ta.sma(df["macd_signal_pct"])
     df["macd_signal_pct_ema"] = ta.ema(df["macd_signal_pct"])
     df["macd_positive"] = ta.above_value(macd, 0)
@@ -22,7 +22,7 @@ def macd_feature_engineering(df):
 def cci_feature_engineering(df):
     cci = df.ta.cci()
     df["cci"] = cci
-    df["cci_pct"] = cci.pct_change()
+    df["cci_pct"] = cci.pct_change() * 100
     df["cci_pct_sma"] = ta.sma(df["cci_pct"])
     df["cci_pct_ema"] = ta.ema(df["cci_pct"])
     df["cci_overbought"] = ta.above_value(cci, 100)
@@ -32,7 +32,7 @@ def cci_feature_engineering(df):
 def rsi_feature_engineering(df):
     rsi = df.ta.rsi()
     df["rsi"] = rsi
-    df["rsi_pct"] = rsi.pct_change()
+    df["rsi_pct"] = rsi.pct_change() * 100
     df["rsi_pct_sma"] = ta.sma(df["rsi_pct"])
     df["rsi_pct_ema"] = ta.ema(df["rsi_pct"])
     df["rsi_overbought"] = ta.above_value(rsi, 70)
@@ -55,7 +55,7 @@ def rsi_feature_engineering(df):
 
 def roc_feature_engineering(df):
     roc = df.ta.roc()
-    df["roc_pct"] = roc.pct_change()
+    df["roc_pct"] = roc.pct_change() * 100
     df["roc_pct_sma"] = ta.sma(df["roc_pct"])
     df["roc_pct_ema"] = ta.ema(df["roc_pct"])
     df["roc_positive"] = ta.above_value(roc, 0)

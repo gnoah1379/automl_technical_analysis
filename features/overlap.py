@@ -4,20 +4,22 @@ import pandas_ta as ta
 
 def ohlc4_feature_engineering(df):
     ohlc4 = (df["open"] + df["high"] + df["low"] + df["close"]) / 4
-    df["ohlc4_pct"] = ohlc4.pct_change()
+    df["ohlc4_pct"] = ohlc4.pct_change() * 100
     df["ohlc4_pct_sma"] = ta.sma(df["ohlc4_pct"])
     df["ohlc4_pct_ema"] = ta.ema(df["ohlc4_pct"])
 
 
 def close_feature_engineering(df):
-    df["close_pct"] = df["close"].pct_change()
+    df["close_pct"] = df["close"].pct_change() * 100
+    df["close_pct_max_14"] = df["close_pct"].rolling(window=14).max()
+    df["close_pct_min_14"] = df["close_pct"].rolling(window=14).min()
     df["close_pct_sma"] = ta.sma(df["close_pct"])
     df["close_pct_ema"] = ta.ema(df["close_pct"])
 
 
 def sma_feature_engineering(df):
     sma10 = ta.sma(df["close"], length=10)
-    df["sma10_pct"] = sma10.pct_change()
+    df["sma10_pct"] = sma10.pct_change() * 100
     df["sma10_pct_sma"] = ta.sma(df["sma10_pct"])
     df["sma10_pct_ema"] = ta.ema(df["sma10_pct"])
     df["sma10_above_close"] = ta.above(sma10, df["close"])
@@ -26,7 +28,7 @@ def sma_feature_engineering(df):
     df["sma10_cross_below_close"] = ta.cross(sma10, df["close"], above=False)
 
     sma20 = ta.sma(df["close"], length=20)
-    df["sma20_pct"] = sma20.pct_change()
+    df["sma20_pct"] = sma20.pct_change() * 100
     df["sma20_pct_sma"] = ta.sma(df["sma20_pct"])
     df["sma20_pct_ema"] = ta.ema(df["sma20_pct"])
     df["sma20_above_close"] = ta.above(sma20, df["close"])
@@ -37,7 +39,7 @@ def sma_feature_engineering(df):
     df["sma20_cross_below_sma10"] = ta.cross(sma20, sma10, above=False)
 
     sma50 = ta.sma(df["close"], length=50)
-    df["sma50_pct"] = sma50.pct_change()
+    df["sma50_pct"] = sma50.pct_change() * 100
     df["sma50_pct_sma"] = ta.sma(df["sma50_pct"])
     df["sma50_pct_ema"] = ta.ema(df["sma50_pct"])
     df["sma50_above_close"] = ta.above(sma50, df["close"])
@@ -50,7 +52,7 @@ def sma_feature_engineering(df):
 
 def ema_feature_engineering(df):
     ema10 = ta.ema(df["close"], length=10)
-    df["ema10_pct"] = ema10.pct_change()
+    df["ema10_pct"] = ema10.pct_change() * 100
     df["ema10_pct_sma"] = ta.sma(df["ema10_pct"])
     df["ema10_pct_ema"] = ta.ema(df["ema10_pct"])
     df["ema10_cross_above_close"] = ta.cross(ema10, df["close"], above=True)
@@ -59,7 +61,7 @@ def ema_feature_engineering(df):
     df["ema10_below_close"] = ta.below(ema10, df["close"])
 
     ema20 = ta.ema(df["close"], length=20)
-    df["ema20_pct"] = ema20.pct_change()
+    df["ema20_pct"] = ema20.pct_change() * 100
     df["ema20_pct_sma"] = ta.sma(df["ema20_pct"])
     df["ema20_pct_ema"] = ta.ema(df["ema20_pct"])
     df["ema20_above_close"] = ta.above(ema20, df["close"])
@@ -70,7 +72,7 @@ def ema_feature_engineering(df):
     df["ema20_cross_below_ema10"] = ta.cross(ema20, ema10, above=False)
 
     ema50 = ta.ema(df["close"], length=50)
-    df["ema50_pct"] = ema50.pct_change()
+    df["ema50_pct"] = ema50.pct_change() * 100
     df["ema50_pct_sma"] = ta.sma(df["ema50_pct"])
     df["ema50_pct_ema"] = ta.ema(df["ema50_pct"])
     df["ema50_above_close"] = ta.above(ema50, df["close"])
