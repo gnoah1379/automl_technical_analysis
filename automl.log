@@ -1,2 +1,0 @@
-{"record_id": 0, "iter_per_learner": 1, "logged_metric": {"pred_time": 0.0002856559093160012}, "trial_time": 127.50036263465881, "wall_clock_time": 128.0604693889618, "validation_loss": 0.4297224709042077, "config": {"n_estimators": 7971, "num_leaves": 915, "min_child_samples": 5, "learning_rate": 0.05280387006043173, "log_max_bin": 8, "colsample_bytree": 0.48134272448242543, "reg_alpha": 0.001975258376030875, "reg_lambda": 0.014831308921006776}, "learner": "lgbm", "sample_size": 30118}
-{"curr_best_record_id": 0}

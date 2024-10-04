@@ -5,9 +5,9 @@ name = "pypi"
 
 [packages]
 pandas-ta = "*"
-flaml = {extras = ["automl"] }
 setuptools = "*"
 numpy = "==1.26.3"
+flaml = {extras = ["catboost"], version = "*"}
 
 [dev-packages]
 
